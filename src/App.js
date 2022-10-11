@@ -1,7 +1,16 @@
-import "./App.css"
-
+import { useState } from "react"
 
 function App() {
+	const [calc, setCalc] = useState("")
+	const [result, setResult] = useState("")
+
+	const ops = ["/", "*", "+", "-", "."]
+
+	const updateCalc = (value) => {
+    setCalc(calc + value)
+    console.log(value);
+	}
+
 	// this function creates digits from 1-9 we are just pushing new numbers into the array named digits. We could of course use regular buttons in html structure but function can to it instead.
 	const createDigits = () => {
 		const digits = []
@@ -15,22 +24,22 @@ function App() {
 		<div className='App'>
 			<div className='calculator'>
 				<div className='display'>
-					<span>(0)</span>0
+					{result ? <span>(0)</span> : ""} {calc || "0"}
 				</div>
 				<div className='operators'>
-					<button>/</button>
-					<button>*</button>
-					<button>+</button>
-					<button>-</button>
+					<button onClick={() => updateCalc("/")}>/</button>
+					<button onClick={()=> updateCalc('*')} >*</button>
+					<button onClick={()=> updateCalc('+')}>+</button>
+					<button onClick={()=> updateCalc('-')}>-</button>
 
 					<button>DEL</button>
 				</div>
-					<div className='digits'>
-						{createDigits()}
-						<button>0</button>
-						<button>.</button>
-						<button>=</button>
-					</div>
+				<div className='digits'>
+					{createDigits()}
+					<button onClick={()=> updateCalc('0')}>0</button>
+					<button onClick={()=> updateCalc('.')}>.</button>
+					<button>=</button>
+				</div>
 			</div>
 		</div>
 	)
