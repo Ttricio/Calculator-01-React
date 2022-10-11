@@ -1,6 +1,7 @@
 import "./App.css"
 
 function App() {
+  // this function creates digits from 1-9 we are just pushing new numbers into the array named digits. We could of course use regular buttons in html structure but function can to it instead.
 	const createDigits = () => {
 		const digits = []
 		for (let i = 1; i < 10; i++) {
@@ -10,7 +11,7 @@ digits.push(
     }
     return digits;
   }
-	
+	// this is regular html structur of course created with react syntax
 	return (
 		<div className='App'>
 			<div clasName='calculator'>
