@@ -7,7 +7,19 @@ function App() {
 	const ops = ["/", "*", "+", "-", "."]
 
 	const updateCalc = (value) => {
+
+    // we prevent typing operators before numbers
+		if (
+			(ops.includes(value) && calc === "") ||
+			(ops.includes(value) && ops.includes(calc.slice(-1)))
+		) {
+			return
+		}
+    //
 		setCalc(calc + value)
+    if(!ops.includes(value)){
+      setResult(eval(calc+value.toString()))
+    }
 	}
 
 	// this function creates digits from 1-9 we are just pushing new numbers into the array named digits. We could of course use regular buttons in html structure but function can to it instead.
@@ -23,12 +35,17 @@ function App() {
 		}
 		return digits
 	}
+
+  const calculate =()=>{
+    setCalc(eval(calc).toString())
+  }
+
 	// this is regular html structur of course created with react syntax
 	return (
 		<div className='App'>
 			<div className='calculator'>
 				<div className='display'>
-					{result ? <span>(0)</span> : ""} {calc || "0"}
+					{result ? <span>({result})</span> : ""} {calc || "0"} 
 				</div>
 				<div className='operators'>
 					<button onClick={() => updateCalc("/")}>/</button>
