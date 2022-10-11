@@ -7,15 +7,19 @@ function App() {
 	const ops = ["/", "*", "+", "-", "."]
 
 	const updateCalc = (value) => {
-    setCalc(calc + value)
-    console.log(value);
+		setCalc(calc + value)
 	}
 
 	// this function creates digits from 1-9 we are just pushing new numbers into the array named digits. We could of course use regular buttons in html structure but function can to it instead.
 	const createDigits = () => {
 		const digits = []
 		for (let i = 1; i < 10; i++) {
-			digits.push(<button key={i}>{i}</button>)
+			digits.push(
+				<button onClick={() => updateCalc(i.toString())} key={i}>
+					{i}
+				</button>
+			)
+			console.log(i)
 		}
 		return digits
 	}
@@ -28,16 +32,16 @@ function App() {
 				</div>
 				<div className='operators'>
 					<button onClick={() => updateCalc("/")}>/</button>
-					<button onClick={()=> updateCalc('*')} >*</button>
-					<button onClick={()=> updateCalc('+')}>+</button>
-					<button onClick={()=> updateCalc('-')}>-</button>
+					<button onClick={() => updateCalc("*")}>*</button>
+					<button onClick={() => updateCalc("+")}>+</button>
+					<button onClick={() => updateCalc("-")}>-</button>
 
 					<button>DEL</button>
 				</div>
 				<div className='digits'>
 					{createDigits()}
-					<button onClick={()=> updateCalc('0')}>0</button>
-					<button onClick={()=> updateCalc('.')}>.</button>
+					<button onClick={() => updateCalc("0")}>0</button>
+					<button onClick={() => updateCalc(".")}>.</button>
 					<button>=</button>
 				</div>
 			</div>
